@@ -13,6 +13,8 @@ impeller_component("ipl") {
   include_dirs = [ "include" ]
   public = [
     "include/base/flags.h",
+    "include/base/mapping_list.h",
+    "include/base/string_list.h",
     "include/core/allocator.h",
     "include/core/buffer_view.h",
     "include/core/device_buffer.h",
@@ -23,10 +25,15 @@ impeller_component("ipl") {
     "include/core/texture_descriptor.h",
     "include/geometry/size.h",
     "include/ipl.h",
+    "include/renderer/backend/vulkan/context_vk.h",
   ]
   sources = [
     "src/base/flags.cc",
     "src/base/flags.h",
+    "src/base/mapping_list.cc",
+    "src/base/mapping_list.h",
+    "src/base/string_list.cc",
+    "src/base/string_list.h",
     "src/core/allocator.cc",
     "src/core/allocator.h",
     "src/core/buffer_view.cc",
@@ -45,6 +52,8 @@ impeller_component("ipl") {
     "src/core/texture_descriptor.h",
     "src/geometry/size.cc",
     "src/geometry/size.h",
+    "src/renderer/backend/vulkan/context_vk.cc",
+    "src/renderer/backend/vulkan/context_vk.h",
   ]
   public_deps = [
     ":embedded_icu_data",

@@ -10,8 +10,13 @@
 extern "C" {
 #endif
 
+#if defined(__i386__) || defined(__arm__) || defined(_M_IX86)
+#define IPL_BUFFER_VIEW_SIZE 20
+#define IPL_BUFFER_VIEW_ALIGN 4
+#else
 #define IPL_BUFFER_VIEW_SIZE 40
 #define IPL_BUFFER_VIEW_ALIGN 8
+#endif
 
 typedef struct {
   alignas(IPL_BUFFER_VIEW_ALIGN) char data[IPL_BUFFER_VIEW_SIZE];
