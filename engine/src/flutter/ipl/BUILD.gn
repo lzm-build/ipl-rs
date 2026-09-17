@@ -1,0 +1,80 @@
+import("//flutter/build/zip_bundle.gni")
+import("//flutter/impeller/tools/impeller.gni")
+
+embed_blob("embedded_icu_data") {
+  symbol_name = "embedded_icu_data"
+  blob = "//flutter/third_party/icu/flutter/icudtl.dat"
+  hdr = "$target_gen_dir/embedded_icu_data.h"
+  cc = "$target_gen_dir/embedded_icu_data.cc"
+  deps = []
+}
+
+impeller_component("ipl") {
+  include_dirs = [ "include" ]
+  public = [
+    "include/base/flags.h",
+    "include/core/allocator.h",
+    "include/core/buffer_view.h",
+    "include/core/device_buffer.h",
+    "include/core/device_buffer_descriptor.h",
+    "include/core/formats.h",
+    "include/core/host_buffer.h",
+    "include/core/texture.h",
+    "include/core/texture_descriptor.h",
+    "include/geometry/size.h",
+    "include/ipl.h",
+  ]
+  sources = [
+    "src/base/flags.cc",
+    "src/base/flags.h",
+    "src/core/allocator.cc",
+    "src/core/allocator.h",
+    "src/core/buffer_view.cc",
+    "src/core/buffer_view.h",
+    "src/core/device_buffer.cc",
+    "src/core/device_buffer.h",
+    "src/core/device_buffer_descriptor.cc",
+    "src/core/device_buffer_descriptor.h",
+    "src/core/formats.cc",
+    "src/core/formats.h",
+    "src/core/host_buffer.cc",
+    "src/core/host_buffer.h",
+    "src/core/texture.cc",
+    "src/core/texture.h",
+    "src/core/texture_descriptor.cc",
+    "src/core/texture_descriptor.h",
+    "src/geometry/size.cc",
+    "src/geometry/size.h",
+  ]
+  public_deps = [
+    ":embedded_icu_data",
+    "//flutter/display_list",
+    "//flutter/fml",
+    "//flutter/impeller/base",
+    "//flutter/impeller/display_list",
+    "//flutter/impeller/entity",
+    "//flutter/impeller/renderer/backend",
+    "//flutter/txt",
+  ]
+}
+
+impeller_component("static_library") {
+  target_type = "static_library"
+
+  complete_static_lib = true
+
+  output_name = "ipl"
+
+  deps = [ ":ipl" ]
+  if (use_flutter_cxx) {
+    deps += [ "//flutter/third_party/libcxx" ]
+  }
+}
+
+impeller_component("shared_library") {
+  target_type = "shared_library"
+
+  output_name = "ipl"
+
+  deps = [ ":ipl" ]
+}
