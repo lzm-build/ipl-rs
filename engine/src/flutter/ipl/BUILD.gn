@@ -26,6 +26,9 @@ impeller_component("ipl") {
     "include/geometry/size.h",
     "include/ipl.h",
     "include/renderer/backend/vulkan/context_vk.h",
+    "include/renderer/backend/vulkan/swapchain_vk.h",
+    "include/renderer/context.h",
+    "include/renderer/surface.h",
   ]
   sources = [
     "src/base/flags.cc",
@@ -54,6 +57,12 @@ impeller_component("ipl") {
     "src/geometry/size.h",
     "src/renderer/backend/vulkan/context_vk.cc",
     "src/renderer/backend/vulkan/context_vk.h",
+    "src/renderer/backend/vulkan/swapchain_vk.cc",
+    "src/renderer/backend/vulkan/swapchain_vk.h",
+    "src/renderer/context.cc",
+    "src/renderer/context.h",
+    "src/renderer/surface.cc",
+    "src/renderer/surface.h",
   ]
   public_deps = [
     ":embedded_icu_data",
