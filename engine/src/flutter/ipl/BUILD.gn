@@ -15,8 +15,14 @@ impeller_component("static_library") {
   output_name = "ipl"
   sources = [
     "include/flags.h",
+    "include/gles_proc_table.h",
+    "include/gles_unique_proc_table.h",
     "src/flags.cc",
     "src/flags.h",
+    "src/gles_proc_table.cc",
+    "src/gles_proc_table.h",
+    "src/gles_unique_proc_table.cc",
+    "src/gles_unique_proc_table.h",
   ]
   deps = [
     ":embedded_icu_data",
