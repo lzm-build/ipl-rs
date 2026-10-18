@@ -2,7 +2,7 @@
 #include <type_traits>
 
 #include "impeller/base/flags.h"
-#include "ipl/include/ffi/flags.h"
+#include "ipl/include/flags.h"
 
 static_assert(std::is_standard_layout_v<impeller::Flags>);
 static_assert(std::is_standard_layout_v<IplFlags>);

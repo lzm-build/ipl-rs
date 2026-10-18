@@ -14,9 +14,9 @@ impeller_component("static_library") {
   complete_static_lib = true
   output_name = "ipl"
   sources = [
-    "include/ffi/flags.h",
-    "include/transmute/flags.h",
+    "include/flags.h",
     "src/flags.cc",
+    "src/flags.h",
   ]
   deps = [
     ":embedded_icu_data",
