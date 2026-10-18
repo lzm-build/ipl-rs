@@ -1,0 +1,34 @@
+import("//flutter/build/zip_bundle.gni")
+import("//flutter/impeller/tools/impeller.gni")
+
+embed_blob("embedded_icu_data") {
+  symbol_name = "embedded_icu_data"
+  blob = "//flutter/third_party/icu/flutter/icudtl.dat"
+  hdr = "$target_gen_dir/embedded_icu_data.h"
+  cc = "$target_gen_dir/embedded_icu_data.cc"
+  deps = []
+}
+
+impeller_component("static_library") {
+  target_type = "static_library"
+  complete_static_lib = true
+  output_name = "ipl"
+  sources = [
+    "include/ffi/flags.h",
+    "include/transmute/flags.h",
+    "src/flags.cc",
+  ]
+  deps = [
+    ":embedded_icu_data",
+    "//flutter/display_list",
+    "//flutter/fml",
+    "//flutter/impeller/base",
+    "//flutter/impeller/display_list",
+    "//flutter/impeller/entity",
+    "//flutter/impeller/renderer/backend",
+    "//flutter/txt",
+  ]
+  if (use_flutter_cxx) {
+    deps += [ "//flutter/third_party/libcxx" ]
+  }
+}
